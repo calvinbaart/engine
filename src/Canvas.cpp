@@ -73,10 +73,10 @@ static GeometryData polyline(vector<fvec2> points, bool closed = false, float st
         nx /= length;
         ny /= length;
 
-		fvec2 t0(points[0].x + nx * strength, points[0].y + ny * strength);
-		fvec2 mint0(points[0].x - nx * strength, points[0].y - ny * strength);
-		fvec2 t2(points[1].x + nx * strength, points[1].y + ny * strength);
-		fvec2 mint2(points[1].x - nx * strength, points[1].y - ny * strength);
+        fvec2 t0(points[0].x + nx * strength, points[0].y + ny * strength);
+        fvec2 mint0(points[0].x - nx * strength, points[0].y - ny * strength);
+        fvec2 t2(points[1].x + nx * strength, points[1].y + ny * strength);
+        fvec2 mint2(points[1].x - nx * strength, points[1].y - ny * strength);
 
         vector<VertexData> vertices;
         vertices.push_back(VertexData(t0));		//0
@@ -151,18 +151,18 @@ static GeometryData polyline(vector<fvec2> points, bool closed = false, float st
         n2x /= length2;
         n2y /= length2;
 
-		fvec2 t0(anchor[0].x - n0x * strength, anchor[0].y - n0y * strength);						//0
-		fvec2 mint0(anchor[0].x + n0x * strength, anchor[0].y + n0y * strength);					//1
-		fvec2 t2(anchor[2].x - n2x * strength, anchor[2].y - n2y * strength);						//2
-		fvec2 mint2(anchor[2].x + n2x * strength, anchor[2].y + n2y * strength);					//3
-		fvec2 at(anchor[1].x - n0x * strength, anchor[1].y - n0y * strength);						//4
-		fvec2 bt(anchor[1].x - n2x * strength, anchor[1].y - n2y * strength);						//5
+        fvec2 t0(anchor[0].x - n0x * strength, anchor[0].y - n0y * strength);						//0
+        fvec2 mint0(anchor[0].x + n0x * strength, anchor[0].y + n0y * strength);					//1
+        fvec2 t2(anchor[2].x - n2x * strength, anchor[2].y - n2y * strength);						//2
+        fvec2 mint2(anchor[2].x + n2x * strength, anchor[2].y + n2y * strength);					//3
+        fvec2 at(anchor[1].x - n0x * strength, anchor[1].y - n0y * strength);						//4
+        fvec2 bt(anchor[1].x - n2x * strength, anchor[1].y - n2y * strength);						//5
 
-		fvec2 vp;																					//6
+        fvec2 vp;																					//6
         intersect(t0, at, t2, bt, vp);
-		fvec2 minvp(anchor[1].x - (vp.x - anchor[1].x), anchor[1].y - (vp.y - anchor[1].y));		//7
+        fvec2 minvp(anchor[1].x - (vp.x - anchor[1].x), anchor[1].y - (vp.y - anchor[1].y));		//7
 
-		uint16_t currentIndex = (uint16_t)vertices.size();
+        uint16_t currentIndex = (uint16_t)vertices.size();
         vertices.emplace_back(t0);
         vertices.emplace_back(mint0);
         vertices.emplace_back(t2);
@@ -217,15 +217,15 @@ void Canvas::setup()
     glDepthFunc(GL_LEQUAL);
     CHECK_GL_ERROR;
 
-	string vertexSource =
-		"#version 330                                               \r\n"
-		"in vec4 position;                                          \r\n"
-		"in vec4 color;                                             \r\n"
-		"                                                           \r\n"
-		"out vec2 vTexCoord;                                        \r\n"
-		"out vec4 vColor;                                           \r\n"
-		"                                                           \r\n"
-		"uniform mat4 projection;                                   \r\n"
+    string vertexSource =
+        "#version 330                                               \r\n"
+        "in vec4 position;                                          \r\n"
+        "in vec4 color;                                             \r\n"
+        "                                                           \r\n"
+        "out vec2 vTexCoord;                                        \r\n"
+        "out vec4 vColor;                                           \r\n"
+        "                                                           \r\n"
+        "uniform mat4 projection;                                   \r\n"
         "                                                           \r\n"
         "void main(void)                                            \r\n"
         "{                                                          \r\n"
@@ -247,7 +247,7 @@ void Canvas::setup()
         "void main(void)                                            \r\n"
         "{                                                          \r\n"
         "    vec4 color = texture(tex, vTexCoord) * vColor;         \r\n"
-		"    oColor = color;                                        \r\n"
+        "    oColor = color;                                        \r\n"
         "}                                                          \r\n";
 
     string geomVertexSource =
@@ -301,16 +301,16 @@ void Canvas::begin()
         m_buffers.emplace_back(move(layer));
 
     m_scissor = false;
-	m_layers.clear();
-	m_state->reset();
+    m_layers.clear();
+    m_state->reset();
 
-	if (m_viewport_scale_x != 1.0f || m_viewport_scale_y != 1.0f)
-	{
-		fmatrix4 mat;
-		mat = glm::scale(mat, fvec3(m_viewport_scale_x, m_viewport_scale_y, 1.0f));
+    if (m_viewport_scale_x != 1.0f || m_viewport_scale_y != 1.0f)
+    {
+        fmatrix4 mat;
+        mat = glm::scale(mat, fvec3(m_viewport_scale_x, m_viewport_scale_y, 1.0f));
 
-		m_state->push_matrix(mat);
-	}
+        m_state->push_matrix(mat);
+    }
 }
 
 void Canvas::draw_line(float x1, float y1, float x2, float y2, float strength)
@@ -398,15 +398,15 @@ void Canvas::end()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     CHECK_GL_ERROR;
 
-	fmatrix4 projection = glm::ortho(m_viewport_x, m_viewport_width, m_viewport_y, m_viewport_height, -100.0f, 100.0f);
+    fmatrix4 projection = glm::ortho(m_viewport_x, m_viewport_width, m_viewport_y, m_viewport_height, -100.0f, 100.0f);
     for (auto& batch : m_layers)
     {
-		if(batch->get_shader() != m_last_shader)
-		{
-			m_last_shader = batch->get_shader();
-			m_last_shader->set_uniform("projection", projection);
-			m_last_shader->apply();
-		}
+        if(batch->get_shader() != m_last_shader)
+        {
+            m_last_shader = batch->get_shader();
+            m_last_shader->set_uniform("projection", projection);
+            m_last_shader->apply();
+        }
 
         batch->upload(m_vertex_attribute, m_color_attribute);
     }
@@ -427,8 +427,8 @@ void Canvas::set_viewport(float x, float y, float w, float h)
 
 void Canvas::set_viewport_scaling(float x, float y)
 {
-	m_viewport_scale_x = x;
-	m_viewport_scale_y = y;
+    m_viewport_scale_x = x;
+    m_viewport_scale_y = y;
 }
 
 void Canvas::set_scissor(bool enabled, float x, float y, float w, float h)
@@ -616,13 +616,13 @@ ShaderPtr Canvas::create_shader(const string& vertex, const string& fragment)
     glCompileShader(vertex_shader);
     CHECK_GL_ERROR;
 
-	int32_t success = 0;
+    int32_t success = 0;
     glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &success);
     CHECK_GL_ERROR;
 
     if (success == GL_FALSE)
     {
-		int32_t logSize = 0;
+        int32_t logSize = 0;
         glGetShaderiv(vertex_shader, GL_INFO_LOG_LENGTH, &logSize);
         CHECK_GL_ERROR;
 
@@ -642,7 +642,7 @@ ShaderPtr Canvas::create_shader(const string& vertex, const string& fragment)
     CHECK_GL_ERROR;
 
     auto fsource = fragment.c_str();
-	int32_t flength = (int32_t)fragment.length();
+    int32_t flength = (int32_t)fragment.length();
 
     glShaderSource(fragment_shader, 1, &fsource, &flength);
     CHECK_GL_ERROR;
@@ -655,7 +655,7 @@ ShaderPtr Canvas::create_shader(const string& vertex, const string& fragment)
 
     if (success == GL_FALSE)
     {
-		int32_t logSize = 0;
+        int32_t logSize = 0;
         glGetShaderiv(fragment_shader, GL_INFO_LOG_LENGTH, &logSize);
         CHECK_GL_ERROR;
 
@@ -696,7 +696,7 @@ ShaderPtr Canvas::create_shader(const string& vertex, const string& fragment)
 
     if (success == GL_FALSE)
     {
-		int32_t maxLength = 0;
+        int32_t maxLength = 0;
         glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
         CHECK_GL_ERROR;
 
@@ -745,9 +745,9 @@ RenderLayer* Canvas::get_layer(TexturePtr texture, bool force)
         if (!m_buffers.empty())
         {
             auto& layer = m_buffers[0];
-			layer->reset(texture, shader);
+            layer->reset(texture, shader);
 
-			m_layers.push_back(move(layer));
+            m_layers.push_back(move(layer));
             m_buffers.erase(m_buffers.begin());
 
             return m_layers.back().get();
@@ -758,10 +758,10 @@ RenderLayer* Canvas::get_layer(TexturePtr texture, bool force)
             glGenBuffers(2, buffers);
             CHECK_GL_ERROR;
 
-			m_layers.push_back(UNEW_3(RenderLayer, this, buffers[0], buffers[1]));
+            m_layers.push_back(UNEW_3(RenderLayer, this, buffers[0], buffers[1]));
 
             auto& layer = m_layers.back();
-			layer->reset(texture, shader);
+            layer->reset(texture, shader);
 
             return layer.get();
         }
@@ -793,7 +793,7 @@ void RenderState::push_opacity(float opacity)
 
 void RenderState::push_matrix(const fmatrix4& matrix)
 {
-	fmatrix4 last = m_matrices.size() == 0 ? fmatrix4() : m_matrices[m_matrices.size() - 1];
+    fmatrix4 last = m_matrices.size() == 0 ? fmatrix4() : m_matrices[m_matrices.size() - 1];
     m_matrices.push_back(last * matrix);
 }
 

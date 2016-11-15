@@ -8,7 +8,7 @@ class Window
 {
 private:
     SDL_Window* m_window;
-	InputPtr m_input;
+    InputPtr m_input;
     void* m_context;
 
     float m_width;
@@ -31,7 +31,7 @@ public:
     float get_height();
     float get_viewport_width();
     float get_viewport_height();
-	InputPtr get_input();
+    InputPtr get_input();
     SDL_Window* get_handle();
 
     bool event_tick();

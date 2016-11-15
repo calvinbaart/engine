@@ -16,12 +16,12 @@ enum class ColorFormat
 
 struct VertexData
 {
-	fvec2 v;
-	fvec2 uv;
+    fvec2 v;
+    fvec2 uv;
     uint32_t color;
 
     VertexData() :
-		v(), uv(), color(0xFFFFFFFF)
+        v(), uv(), color(0xFFFFFFFF)
     {
     }
 
@@ -31,17 +31,17 @@ struct VertexData
     }
 
     VertexData(const fvec2& p) :
-		v(p), uv(), color(0xFFFFFFFF)
+        v(p), uv(), color(0xFFFFFFFF)
     {
     }
 
     VertexData(const fvec2& p, const fvec2& t) :
-		v(p), uv(t), color(0xFFFFFFFF)
+        v(p), uv(t), color(0xFFFFFFFF)
     {
     }
 
     VertexData(const fvec2& p, const fvec2& t, const Color& col) :
-		v(p), uv(t), color(col.uint)
+        v(p), uv(t), color(col.uint)
     {
     }
 };
@@ -81,16 +81,16 @@ private:
     vector<RenderLayerPtr> m_buffers;
     unordered_map<TextureID, TexturePtr> m_textures;
 
-	RenderStatePtr m_state;
+    RenderStatePtr m_state;
 
     ShaderPtr m_default_shader;
     ShaderPtr m_default_geom_shader;
     int32_t m_vertex_attribute;
-	int32_t m_color_attribute;
+    int32_t m_color_attribute;
 
     Color m_clear_color;
-	float m_viewport_scale_x;
-	float m_viewport_scale_y;
+    float m_viewport_scale_x;
+    float m_viewport_scale_y;
     float m_viewport_x;
     float m_viewport_y;
     float m_viewport_width;
@@ -130,7 +130,7 @@ public:
 
     void set_clear_color(const Color& color);
     void set_viewport(float x, float y, float w, float h);
-	void set_viewport_scaling(float x, float y);
+    void set_viewport_scaling(float x, float y);
     void set_scissor(bool enabled, float x = 0.0f, float y = 0.0f, float w = 0.0f, float h = 0.0f);
     void set_shader(ShaderPtr shader);
     bool scissor_test();
@@ -152,7 +152,7 @@ public:
 
     RenderState* get_state();
 private:
-	RenderLayer* get_layer(TexturePtr texture, bool force = false);
+    RenderLayer* get_layer(TexturePtr texture, bool force = false);
 };
 
 #endif

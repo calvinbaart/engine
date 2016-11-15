@@ -27,10 +27,10 @@ bool Window::open(const string& title, uint32_t w, uint32_t h, bool fullscreen)
 
     initialise_sdl();
 
-	auto flags = SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI;
+    auto flags = SDL_WINDOW_OPENGL | SDL_WINDOW_ALLOW_HIGHDPI;
     if (fullscreen)
     {
-		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+        flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
     }
 
     m_window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int32_t)w, (int32_t)h, flags);
@@ -62,7 +62,7 @@ bool Window::open(const string& title, uint32_t w, uint32_t h, bool fullscreen)
     SDL_GL_SetSwapInterval(1);
 
     int32_t ww, wh;
-	int32_t vw, vh;
+    int32_t vw, vh;
     SDL_GetWindowSize(m_window, &ww, &wh);
     SDL_GL_GetDrawableSize(m_window, &vw, &vh);
 
@@ -121,7 +121,7 @@ float Window::get_viewport_height()
 
 InputPtr Window::get_input()
 {
-	return m_input;
+    return m_input;
 }
 
 SDL_Window* Window::get_handle()
@@ -145,34 +145,34 @@ bool Window::event_tick()
         }
         else if (event.type == SDL_KEYUP)
         {
-			m_input->_notify_key_release(event.key.keysym.sym);
+            m_input->_notify_key_release(event.key.keysym.sym);
         }
         else if (event.type == SDL_MOUSEMOTION)
         {
-			m_input->_notify_mouse_move((float)event.motion.x, (float)event.motion.y);
+            m_input->_notify_mouse_move((float)event.motion.x, (float)event.motion.y);
         }
         else if (event.type == SDL_MOUSEBUTTONDOWN)
         {
             switch (event.button.button)
             {
                 case 0:
-					m_input->_notify_key_press(SDLK_mouse_4);
+                    m_input->_notify_key_press(SDLK_mouse_4);
                     break;
 
                 case 1:
-					m_input->_notify_key_press(SDLK_mouse_left);
+                    m_input->_notify_key_press(SDLK_mouse_left);
                     break;
 
                 case 2:
-					m_input->_notify_key_press(SDLK_mouse_middle);
+                    m_input->_notify_key_press(SDLK_mouse_middle);
                     break;
 
                 case 3:
-					m_input->_notify_key_press(SDLK_mouse_right);
+                    m_input->_notify_key_press(SDLK_mouse_right);
                     break;
 
                 case 4:
-					m_input->_notify_key_press(SDLK_mouse_5);
+                    m_input->_notify_key_press(SDLK_mouse_5);
                     break;
             }
         }
@@ -181,29 +181,29 @@ bool Window::event_tick()
             switch (event.button.button)
             {
                 case 0:
-					m_input->_notify_key_release(SDLK_mouse_4);
+                    m_input->_notify_key_release(SDLK_mouse_4);
                     break;
 
                 case 1:
-					m_input->_notify_key_release(SDLK_mouse_left);
+                    m_input->_notify_key_release(SDLK_mouse_left);
                     break;
 
                 case 2:
-					m_input->_notify_key_release(SDLK_mouse_middle);
+                    m_input->_notify_key_release(SDLK_mouse_middle);
                     break;
 
                 case 3:
-					m_input->_notify_key_release(SDLK_mouse_right);
+                    m_input->_notify_key_release(SDLK_mouse_right);
                     break;
 
                 case 4:
-					m_input->_notify_key_release(SDLK_mouse_5);
+                    m_input->_notify_key_release(SDLK_mouse_5);
                     break;
             }
         }
         else if (event.type == SDL_MOUSEWHEEL)
         {
-			m_input->_notify_mouse_scroll((float)event.wheel.y);
+            m_input->_notify_mouse_scroll((float)event.wheel.y);
         }
     }
 

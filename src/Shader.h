@@ -7,7 +7,7 @@
 class Shader
 {
 private:
-	uint32_t m_program;
+    uint32_t m_program;
 
     unordered_map<string, fmatrix4> m_matrices;
     unordered_map<string, TextureID> m_textures;
@@ -25,7 +25,7 @@ public:
     void set_uniform(string uniform, const fvec2& vec);
     void set_uniform(string uniform, const fvec3& vec);
     void set_uniform(string uniform, const fvec4& vec);
-	void set_uniform(string uniform, const Color& col);
+    void set_uniform(string uniform, const Color& col);
 
     void apply();
 

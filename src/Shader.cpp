@@ -6,7 +6,7 @@
 Shader::Shader(unsigned int program) : m_program(program)
 {
     set_uniform("tex", (TexturePtr)nullptr);
-	set_uniform("projection", fmatrix4());
+    set_uniform("projection", fmatrix4());
 }
 
 Shader::~Shader()
@@ -45,7 +45,7 @@ void Shader::set_uniform(string uniform, const fvec4& vec)
 
 void Shader::set_uniform(string uniform, const Color& col)
 {
-	set_uniform(uniform, fvec4(col.r, col.g, col.b, col.a));
+    set_uniform(uniform, fvec4(col.r, col.g, col.b, col.a));
 }
 
 void Shader::apply()

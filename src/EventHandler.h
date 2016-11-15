@@ -6,13 +6,13 @@
 class EventHandler
 {
 private:
-	vector<EventPtr> m_events;
+    vector<EventPtr> m_events;
 public:
-	EventHandler();
-	virtual ~EventHandler();
+    EventHandler();
+    virtual ~EventHandler();
 
-	EventPtr get_event();
-	void fire_event(EventPtr evt);
+    EventPtr get_event();
+    void fire_event(EventPtr evt);
 };
 
 #endif
